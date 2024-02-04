@@ -1,0 +1,23 @@
+/* .contact-btn {
+     background-color: rgb(159, 163, 163);
+     border-color: rgb(206, 208, 209) !important;
+     color: black;
+}
+
+.contact-btn-hover {
+     background-color: rgb(206, 207, 207);
+     border-color: rgb(240, 241, 241) !important;
+     color: black;
+} */
+
+.contact-link {
+    color: black;
+}
+
+.contact-icon {
+    cursor: pointer;
+}
+.contacts-bg {
+    background-color: #f2f1ed;
+    height: 100%;
+}
