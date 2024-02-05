@@ -1,5 +1,6 @@
 import ContactPage from './Contact/ContactPage';
 import NavBar from './Navbar/NavBar';
+import ServicesPage from './Services/ServicesPage';
 
 
 const HomePage = () => {
@@ -7,6 +8,7 @@ const HomePage = () => {
     return (
         <>
         <NavBar/>
+        <ServicesPage/>
         <ContactPage/>
         </>
     )
