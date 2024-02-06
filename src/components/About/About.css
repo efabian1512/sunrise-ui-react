@@ -1,0 +1,11 @@
+.accordion-button::after {
+  background-image: initial;
+}
+
+.accordion-button:not(.collapsed)::after {
+  background-image: initial;
+}
+
+.pt-5 {
+  padding-top: 5rem !important;
+}

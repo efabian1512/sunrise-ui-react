@@ -2,11 +2,12 @@ import ContactForm from "./ContactForm";
 import styles from './Contact.module.css';
 import { CONTACTINFO } from '../../constants/ContactInfoConst';
 import { CONTACTSOCIALNETWORKINFO } from "../../constants/ContactSocialNetworkConstant";
+import { forwardRef } from 'react';
 
-const ContactPage = () => {
+const ContactPage = forwardRef<HTMLDivElement>((props, ref) => {
 
     return (
-        <div className={ styles['contacts-bg'] + ' row p-5'}>
+        <div id='contacts' ref={ref} className={ styles['contacts-bg'] + ' row p-5'}>
             <div className="col-md-6 col-sm-6 col-lg-6 py-5">
         <div className="ps-3 mb-5 mt-3 py-1 text-dark">
             <h3 className="text-center fw-bold">INFORMACION DE CONTACTO</h3>
@@ -40,7 +41,7 @@ const ContactPage = () => {
        <ContactForm />
     </div>
 </div>        
-    )
-}
+    );
+});
 
 export default ContactPage;

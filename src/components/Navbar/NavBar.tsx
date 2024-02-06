@@ -2,7 +2,15 @@ import NAVBARTABS from '../../constants/navbartabs';
 import styles from './NavBar.module.css';
 import logo from '../../assets/SmallSquareLogoJpgCropped.jpg';
 
-const NavBar = () => {
+  
+interface Props {
+        scrollTo: (componentName: string) => void;
+}
+
+const NavBar = ({scrollTo}: Props) => {
+
+  
+
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div className="container-fluid justify-content-center py-1">
@@ -26,7 +34,7 @@ const NavBar = () => {
                     </li>
 
                     if (!tab.isHomeTab && !tab.isLoginTab) return <li key={index} className="nav-item me-3">
-                        <a className={styles.clickable +" nav-link fw-bold"}>{tab?.title}</a>
+                        <a onClick={() => scrollTo(tab?.name)} className={styles.clickable +" nav-link fw-bold"}>{tab?.title}</a>
                     </li>
                 })}
                 {/* <ng-container *ngFor="let tab of tabs">
@@ -53,7 +61,7 @@ const NavBar = () => {
     </div>
     <ul className="collapse navbar-collapse navbar-nav justify-content-end me-auto flex-grow-0 mb-2 mb-lg-0 pe-3">
         {NAVBARTABS.map(tab => {
-            if(tab.isLoginTab) return <li key={NAVBARTABS.length} className="nav-item py-0 btn btn-light btn-sm">
+            if(tab.isLoginTab) return <li key={NAVBARTABS.length} className="nav-item py-0 btn btn-light btn-sm me-3">
                 <a className="nav-link text-dark fw-bold">{tab?.title}</a>
             </li>
         })}
