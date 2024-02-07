@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { CarouselImage } from "../../../entities/CarouselImage";
 import './Carousel.scss';
 import { CarouselConfig } from "../../../entities/Carousel";
 
@@ -11,29 +10,23 @@ const Carousel = ({ config: { slideInterval = 5000, autoSlide = false, images = 
 
     const [selectedIndex, setSelectedIndex] = useState(0);
 
-    const [items, setItems] = useState(images);
-    
-    useEffect(()=> {
-         if(autoSlide) 
-          autoSlideImages();
-    
-        setItems([...items.map((item, index) => ({...item, id: index, marginLeft: 0}))]);
-    }, []);
+    const updatedItems = [...images.map((item, index) => ({...item, id: index, marginLeft: 0}))];
 
- const autoSlideImages = () => 
-    setInterval(()=> {
-      onNextClick();
-    }, slideInterval);
-  
+    const [items, setItems] = useState(updatedItems);
+
+    useEffect(()=> {
+         if(autoSlide) {
+             const interval = setInterval(()=> {
+                onNextClick();
+         }, slideInterval);
+        return () => clearInterval(interval);
+    }
+    }, autoSlide ? [items] : []);
 
     const selectImage = (index: number) => {
         setSelectedIndex(index);
 
-        const firstItem = items.find((image: CarouselImage) => image.id === 0);
-
-        if (firstItem) {
-            setItems([...items.map(item => item.id === firstItem.id ? {...item, marginLeft: -100 * index} : item)]);
-        }
+        setItems([...items.map(item => item.id === items[0].id ? {...item, marginLeft: -100 * index} : item)]);
     };
 
     const onNextClick = () => {
@@ -46,11 +39,9 @@ const Carousel = ({ config: { slideInterval = 5000, autoSlide = false, images = 
                nextPosition = 0;
            }
 
-       const firstItem = items.find((image: CarouselImage) => image.id === 0);
-
-       if (firstItem) {
-           setItems([...items.map(item => item.id === firstItem.id ? {...item, marginLeft: finalPercentage} : item)]);
-       }
+   
+        setItems([...items.map(item => item.id === items[0].id ? {...item, marginLeft: finalPercentage} : item)]);
+       
 
         setSelectedIndex(nextPosition);
      }
@@ -66,11 +57,9 @@ const Carousel = ({ config: { slideInterval = 5000, autoSlide = false, images = 
               finalPercentage = -100 * previousPosition;
          }
 
-         const firstItem = items.find((image: CarouselImage) => image.id === 0);
-
-         if (firstItem) {
-             setItems([...items.map(item => item.id === firstItem.id ? {...item, marginLeft: finalPercentage} : item)]);
-         }
+    
+         setItems([...items.map(item => item.id === items[0].id ? {...item, marginLeft: finalPercentage} : item)]);
+         
 
          setSelectedIndex(previousPosition);
       }
