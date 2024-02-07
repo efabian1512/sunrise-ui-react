@@ -6,8 +6,7 @@ const NAVBARTABS: NavBarTab[] = [
         title: NavBarTitle.SUNRISE,
         name: NavBarTabName.SUNRISE,
         isHomeTab: true,
-        //logoImageUrl: '../../../../assets/SmallSquareLogoJpgCropped.jpg',
-        logoImageUrl: '../assets/SmallSquareLogoJpgCropped.jpg'
+        logoImageUrl: '/src/assets/SmallSquareLogoJpgCropped.jpg',
     },
     {
         title: NavBarTitle.SERVICES,

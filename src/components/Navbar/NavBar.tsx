@@ -1,6 +1,8 @@
 import NAVBARTABS from '../../constants/navbartabs';
 import styles from './NavBar.module.css';
-import logo from '../../assets/SmallSquareLogoJpgCropped.jpg';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
+
 
   
 interface Props {
@@ -9,7 +11,7 @@ interface Props {
 
 const NavBar = ({scrollTo}: Props) => {
 
-  
+  const [selectedTab, setSelectedTab] = useState('home');
 
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -22,19 +24,22 @@ const NavBar = ({scrollTo}: Props) => {
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 {NAVBARTABS.map((tab, index) => {
                     if (tab.isHomeTab) return  <li key={index} className="nav-item me-3">
-                        <a className={styles.clickable+" nav-link fw-bold py-0"}>
+                        <Link onClick={() => setSelectedTab('home')} to='/' className={ (selectedTab === tab?.name) ? "active nav-link fw-bold py-0" :"nav-link fw-bold py-0"}>
                             <div className="row">
-                                <img className="col pe-1" src={logo} width='50px' height='40px'/>
+                                <img className="col pe-1" src={tab.logoImageUrl} width='50px' height='40px'/>
                                 {/* <div style={{backgroundImage: 'url('+logo+')' }} className={styles.thumbnail +" me-1 col"}>
                                  
                                 </div> */}
                                 <span className="col pt-2 ps-0">{tab?.title}</span>
                             </div>
-                        </a>
+                        </Link>
                     </li>
 
                     if (!tab.isHomeTab && !tab.isLoginTab) return <li key={index} className="nav-item me-3">
-                        <a onClick={() => scrollTo(tab?.name)} className={styles.clickable +" nav-link fw-bold"}>{tab?.title}</a>
+                        <a onClick={() => { 
+                            setSelectedTab(tab?.name);
+                            scrollTo(tab?.name)
+                        }} className={(selectedTab === tab?.name) ? 'active ' + styles.clickable +" nav-link fw-bold" : styles.clickable +" nav-link fw-bold"}>{tab?.title}</a>
                     </li>
                 })}
                 {/* <ng-container *ngFor="let tab of tabs">
@@ -62,7 +67,7 @@ const NavBar = ({scrollTo}: Props) => {
     <ul className="collapse navbar-collapse navbar-nav justify-content-end me-auto flex-grow-0 mb-2 mb-lg-0 pe-3">
         {NAVBARTABS.map(tab => {
             if(tab.isLoginTab) return <li key={NAVBARTABS.length} className="nav-item py-0 btn btn-light btn-sm me-3">
-                <a className="nav-link text-dark fw-bold">{tab?.title}</a>
+                <Link to='/login' className="nav-link text-dark fw-bold">{tab?.title}</Link>
             </li>
         })}
         {/* <ng-container *ngFor="let tab of tabs">

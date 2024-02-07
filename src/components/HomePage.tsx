@@ -5,6 +5,7 @@ import ContactPage from './Contact/ContactPage';
 import useTabsReferences from './Hooks/useTabsReferences';
 import NavBar from './Navbar/NavBar';
 import ServicesPage from './Services/ServicesPage';
+import { ScrollRestoration } from 'react-router-dom';
 
 
 const HomePage = () => {
@@ -32,7 +33,9 @@ const carouselConfig: CarouselConfig = {images: [
 
 
     return (
+      
         <>
+        <ScrollRestoration/>
         <NavBar scrollTo={scrollTo}/>
         <Carousel config={carouselConfig}/>
         <ServicesPage ref={references.services}/>
