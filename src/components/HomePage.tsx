@@ -1,6 +1,6 @@
 import { CarouselConfig } from '../entities/Carousel';
 import About from './About/AboutPage';
-import Carousel from './About/Carousel/Carousel';
+import Carousel from './Carousel/Carousel';
 import ContactPage from './Contact/ContactPage';
 import useTabsReferences from './Hooks/useTabsReferences';
 import NavBar from './Navbar/NavBar';

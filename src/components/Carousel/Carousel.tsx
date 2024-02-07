@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import './Carousel.scss';
-import { CarouselConfig } from "../../../entities/Carousel";
+import { CarouselConfig } from "../../entities/Carousel";
 
 interface Props {
     config: CarouselConfig;
