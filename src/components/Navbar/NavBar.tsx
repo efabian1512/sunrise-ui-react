@@ -14,13 +14,13 @@ const NavBar = ({scrollTo}: Props) => {
   const [selectedTab, setSelectedTab] = useState('home');
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div className="container-fluid justify-content-center py-1">
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top ">
+            <div className="container-fluid justify-content-center py-1">
+                <button className={styles['small-screens-button']+" navbar-toggler"} type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+                </button>
+            <div className="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 {NAVBARTABS.map((tab, index) => {
                     if (tab.isHomeTab) return  <li key={index} className="nav-item me-3">

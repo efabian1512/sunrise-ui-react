@@ -7,3 +7,7 @@
 .clickable {
     cursor: pointer;
 }
+
+.small-screens-button {
+    margin-right: auto;
+}
