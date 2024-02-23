@@ -21,3 +21,26 @@
     background-color: #f2f1ed;
     height: 100%;
 }
+
+.contact-form {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.contact {
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+@media screen and (min-width: 1024px) {
+    .contact-form {
+        padding-left: 3rem;
+        padding-right: 0.8rem;
+    }
+
+    .contact {
+        padding-right: 3rem;
+        padding-left: 3rem;
+    }
+
+}

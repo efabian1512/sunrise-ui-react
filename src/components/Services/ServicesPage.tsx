@@ -9,13 +9,13 @@ import { Link } from "react-router-dom";
 const ServicesPage = forwardRef<HTMLDivElement>((props, ref) => {
 
   
-    return (<div id="services" ref={ref} className="row p-5 bg-dark">
-                <div className="pb-5 mt-3 col-md col-lg col-sm text-light">
+    return (<div id="services" ref={ref} className={styles['services'] + " row row-cols-1 row-cols-sm-2 bg-dark"}>
+                <div className={styles['services-title'] + " mt-3 col-md col-lg col-sm text-light"}>
                     <h1>Nuestros Servicios</h1>
                     <p>Haga click sobre el servicio para el que desea realizar solicitud.</p>
                 </div>
     
-                <div className="col-md-8 col-lg-8 col-sm-8 px-5 pb-5">
+                <div className={styles['services-items'] +" col-md-8 col-lg-8 col-sm-8 pb-5"}>
                     <div className={styles['services-wrapper'] + " px-4 px-5 pb-5 pt-3 "} id="icon-grid">
                     <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
                     {SERVICES.map((service, index) => 

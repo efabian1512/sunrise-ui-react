@@ -6,6 +6,16 @@
   background-image: initial;
 }
 
-.pt-5 {
-  padding-top: 5rem !important;
+  /* .pt-5 {
+    padding-top: 5rem !important;
+  } */
+
+.about {
+  padding: 0.5rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .about {
+    padding: 5rem 3rem 3rem 3rem;
+  }
 }

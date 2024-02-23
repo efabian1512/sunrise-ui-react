@@ -13,15 +13,15 @@ const HomePage = () => {
 const references = useTabsReferences();
 const carouselConfig: CarouselConfig = {images: [
     {
-      imageSrc: '/src/assets/image-3000x1500.jpg',
+      baseImageSrc: '/src/assets/image-3000x1500.jpg',
       imageAlt: 'Sunrise-Banner'
     },
     {
-      imageSrc: '/src/assets/peticion-de-familiares-en-usa.jpg',
+      baseImageSrc: '/src/assets/peticion-de-familiares-en-usa.jpg',
       imageAlt: 'Family'
     },
     {
-      imageSrc: '/src/assets/migracion.webp',
+      baseImageSrc: '/src/assets/migracion.webp',
       imageAlt: 'Migration'
     }
   ]

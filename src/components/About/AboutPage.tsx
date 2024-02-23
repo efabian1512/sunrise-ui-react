@@ -3,7 +3,7 @@ import { forwardRef } from 'react';
 
 const About = forwardRef<HTMLDivElement>((props, ref)=> {
     return (
-        <div id='about' className="bg-light p-5" ref={ref}>
+        <div id='about' className="bg-light about" ref={ref}>
     <div className="rounded pt-5 pb-1 text-dark">
         <h3 className="mb-3  text-center fw-bold">IDENTIDAD DE LA MARCA SUNRISE MULTISERVICES LLC.</h3>
     </div>
