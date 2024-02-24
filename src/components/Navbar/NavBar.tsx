@@ -2,6 +2,7 @@ import NAVBARTABS from '../../constants/navbartabs';
 import styles from './NavBar.module.css';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import MobileMenu from './MobileMenu';
 
 
   
@@ -12,18 +13,21 @@ interface Props {
 const NavBar = ({scrollTo}: Props) => {
 
   const [selectedTab, setSelectedTab] = useState('home');
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     return (
         <nav className={styles['navbar-content']+" navbar navbar-expand-lg navbar-dark bg-dark fixed-top"}>
             <div className={styles['navbar-main'] + ' ' + styles['small-screens']+ " container-fluid"}>
             
-                 <button className={"navbar-toggler"} type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                 <button onClick={() => setMobileMenuOpen(true)} className={"navbar-toggler"} type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                     </button>
                 <div className={styles['vl'] + ' ' + styles['navbar-toggler-item'] + " me-2 ms-2" }></div>
-                <img className={styles['navbar-toggler-item']+" navbar-toggler-logo"} src="/src/assets/SmallSquareLogoJpgCropped.jpg" width='50px' height='40px' alt="Sunrise logo"/>
-                <span className={styles['navbar-toggler-item'] + ' ' + styles['logo-title']}>SUNRISE</span>
+                <Link className={styles['navbar-toggler-item'] + ' ' + styles['home-link']} to='/'>
+                    <img className={styles['navbar-toggler-logo']} src="/src/assets/SmallSquareLogoJpgCropped.jpg" width='50px' height='40px' alt="Sunrise logo"/>
+                    <span className={styles['logo-title'] + " fw-bold"}>SUNRISE</span>   
+                </Link>
                 {/* <ul className={styles['navbar-toggler-link']}>
                     <li className="nav-item py-0 btn btn-light btn-sm me-3">
                         <Link to='/login' className="nav-link text-dark fw-bold">ACCEDER</Link>
@@ -88,6 +92,8 @@ const NavBar = ({scrollTo}: Props) => {
             </li>
         </ng-container> */}
     </ul>
+
+    <MobileMenu scrollTo={scrollTo} isMobileMenuOpen={isMobileMenuOpen} toggleMenu={(isOpen) => setMobileMenuOpen(isOpen)}/>
 </nav>
     )
 

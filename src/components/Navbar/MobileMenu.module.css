@@ -1,0 +1,19 @@
+.clickable {
+    cursor: pointer;
+}
+
+
+.off-nabvar-item {
+    padding: 0;
+}
+
+.off-nabvar-item a {
+    padding: 2rem 1rem;
+}
+
+.off-nabvar-item a:hover {
+    color: #fff;
+    background: black;
+}
+
+
