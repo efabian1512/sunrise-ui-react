@@ -98,7 +98,17 @@
         height: 40vh;
     }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 768px) {
+    .dsc-carousel {
+       min-height: '50vh'
+    }
+
+    .dsc-carousel__content img {
+        height: 50vh;
+    }
+}
+
+@media screen and (min-width: 992px) {
     .dsc-carousel {
        min-height: '60vh'
     }

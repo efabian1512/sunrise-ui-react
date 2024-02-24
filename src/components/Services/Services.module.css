@@ -49,15 +49,18 @@
 }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 992px) {
     .services {
-        /* margin-top: 0; */
+        margin-top: 0;
+        display: grid;
+        grid-template-columns: 33% 67%;
         padding: 3rem;
     }
 
     .services-items {
         padding-left: 3rem;
         padding-right: 3rem;
+        background: none;
     }
 
     .services-wrapper {
@@ -66,10 +69,10 @@
 
     }
 
-    .services-bg {
+    /* .services-bg {
         /*background-color: #b3d9f2;*/
-        background: #f2f1ed;
-    }
+        /* background: #f2f1ed; */
+    /* } */
 
     .services-anchor {
         color: #606263 !important;
@@ -78,7 +81,10 @@
 
 
     .services-title {
-        padding: 3rem;
+        font-size: 1rem;
+        padding: 0 0.8rem 3rem;
+        margin-top: 1rem;
+        /* padding: 3rem; */
     }
 
 }

@@ -41,13 +41,15 @@
 
 
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 992px) {
     .contact-form {
         padding-left: 3rem;
         padding-right: 0.8rem;
     }
 
     .contact {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
         padding-right: 3rem;
         padding-left: 3rem;
     }

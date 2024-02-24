@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 const ServicesPage = forwardRef<HTMLDivElement>((props, ref) => {
 
   
-    return (<div id="services" ref={ref} className={styles['services'] + " bg-dark"}>
+    return (<div id="services" ref={ref} className={styles['services'] + " bg-dark row"}>
                 <div className={styles['services-title'] + " text-light"}>
                     <h1>Nuestros Servicios</h1>
                     <p>Haga click sobre el servicio para el que desea realizar solicitud.</p>
