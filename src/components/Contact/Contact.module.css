@@ -28,9 +28,18 @@
 }
 
 .contact {
+    display: grid;
     padding-right: 1.5rem;
     padding-left: 1.5rem;
 }
+
+.contact-info, .contact-form {
+    margin: 0 auto;
+    max-width: 600px;
+    width: 100%;
+}
+
+
 
 @media screen and (min-width: 1024px) {
     .contact-form {

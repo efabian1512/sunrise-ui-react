@@ -7,8 +7,8 @@ import { forwardRef } from 'react';
 const ContactPage = forwardRef<HTMLDivElement>((props, ref) => {
 
     return (
-        <div id='contacts' ref={ref} className={ styles['contacts-bg'] +' ' +styles['contact'] + ' row py-5'}>
-            <div className="col-md-6 col-sm-6 col-lg-6 py-5">
+        <div id='contacts' ref={ref} className={ styles['contacts-bg'] +' ' +styles['contact'] + ' py-5'}>
+        <div className={styles['contact-info']+" py-5"}>
         <div className="ps-3 mb-5 mt-3 py-1 text-dark">
             <h3 className="text-center fw-bold">INFORMACION DE CONTACTO</h3>
         </div>
