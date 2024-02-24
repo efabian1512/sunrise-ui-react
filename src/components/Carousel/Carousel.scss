@@ -86,3 +86,25 @@
 .padt-5 {
     padding-top: 4rem!important;
 }
+
+
+ .dsc-carousel {
+       min-height: '30vh'
+  }
+
+  
+   .dsc-carousel__content img {
+        width: 100%;    
+        height: 30vh;
+    }
+
+@media screen and (min-width: 1024px) {
+    .dsc-carousel {
+       min-height: '60vh'
+    }
+
+    .dsc-carousel__content img {
+        height: 60vh;
+    }
+
+}

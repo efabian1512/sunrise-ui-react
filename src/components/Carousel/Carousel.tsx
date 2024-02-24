@@ -66,14 +66,14 @@ const Carousel = ({ config: { slideInterval = 5000, autoSlide = false, images = 
 
 
     return (
-        <div className="dsc-carousel card border-0 padt-5" style={{minHeight: '60vh'}}>
+        <div className="dsc-carousel card border-0 padt-5">
     <div className="dsc-carousel__btns fw-bold">
         <i onClick={onPreviousClick} className="bi bi-chevron-left"></i>
         <i onClick={onNextClick} className="bi bi-chevron-right"></i>
     </div>
     <div className="dsc-carousel__content">
         {items.map((image, index) => 
-             <img key={index} style={{marginLeft: image.marginLeft + '%' ,height: '60vh'}} src={image.baseImageSrc} className="card-img-top dsc-carousel__content-item  rounded-0 " alt="image.imageAlt"/>
+             <img key={index} style={{marginLeft: image.marginLeft + '%'}} src={image.baseImageSrc} className="card-img-top dsc-carousel__content-item  rounded-0 " alt="image.imageAlt"/>
         )}
     </div>
     <div className="dsc-carousel__steps">

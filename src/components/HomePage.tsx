@@ -13,7 +13,7 @@ const HomePage = () => {
 const references = useTabsReferences();
 const carouselConfig: CarouselConfig = {images: [
     {
-      baseImageSrc: '/src/assets/image-3000x1500.jpg',
+      baseImageSrc: 'src/assets/TwitterHeaderShorter.png',
       imageAlt: 'Sunrise-Banner'
     },
     {
