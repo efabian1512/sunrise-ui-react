@@ -1,5 +1,6 @@
 import { useState } from "react";
 import NAVBARTABS from "../../constants/navbartabs";
+import useWindowResize from "../Hooks/useWindowsResize";
 import styles from './MobileMenu.module.css';
 
 
@@ -10,8 +11,14 @@ interface Props {
 }
 
 const MobileMenu = ({isMobileMenuOpen, toggleMenu, scrollTo}:Props) => {
-    
- return   <div className={`offcanvas offcanvas-start text-bg-dark ${isMobileMenuOpen ? ' show' : ''} `} tabIndex={-1} id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+    const isMobileSize = useWindowResize(991);
+
+    console.log(isMobileSize);
+    console.log(isMobileMenuOpen);
+
+ return  (
+     <>
+ <div className={`offcanvas offcanvas-start text-bg-dark ${isMobileMenuOpen && isMobileSize ? ' show' : ' collapse'} `} tabIndex={-1} id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
                 <div className="offcanvas-header">
                 <h5 className="offcanvas-title fw-bold" id="offcanvasDarkNavbarLabel">SUNRISE</h5>
                 <button onClick={() => toggleMenu(false)} type="button" className="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -29,12 +36,20 @@ const MobileMenu = ({isMobileMenuOpen, toggleMenu, scrollTo}:Props) => {
                 }
              )}
             </ul>
+
                 {/* <form className="d-flex mt-3" role="search">
                     <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
                     <button className="btn btn-success" type="submit">Search</button>
                 </form> */}
             </div>
         </div>
+
+         {(isMobileMenuOpen && isMobileSize) && <div className="offcanvas-backdrop fade show"></div>}
+ </> 
+ )
 }
+
+
+
 
 export default MobileMenu;

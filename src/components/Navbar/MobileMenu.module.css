@@ -16,4 +16,11 @@
     background: black;
 }
 
+@media screen and (max-width: 991px) {
+    .offcanvas ul {
+        display: none;
+        visibility: hidden;
+    }
+}
+
 

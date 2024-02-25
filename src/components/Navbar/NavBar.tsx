@@ -28,11 +28,6 @@ const NavBar = ({scrollTo}: Props) => {
                     <img className={styles['navbar-toggler-logo']} src="/src/assets/SmallSquareLogoJpgCropped.jpg" width='50px' height='40px' alt="Sunrise logo"/>
                     <span className={styles['logo-title'] + " fw-bold"}>SUNRISE</span>   
                 </Link>
-                {/* <ul className={styles['navbar-toggler-link']}>
-                    <li className="nav-item py-0 btn btn-light btn-sm me-3">
-                        <Link to='/login' className="nav-link text-dark fw-bold">ACCEDER</Link>
-                    </li>
-                </ul> */}
                 <span className={styles['navbar-toggler-link']+ ' ' +styles['navbar-toggler-item']+" nav-item py-0 btn btn-light btn-sm me-3"}><Link to='/login' className={styles['small-screens-link']+" nav-link text-dark fw-bold"}>ACCEDER</Link></span>     
                    
             <div className="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
@@ -57,25 +52,6 @@ const NavBar = ({scrollTo}: Props) => {
                         }} className={(selectedTab === tab?.name) ? 'active ' + styles.clickable +" nav-link fw-bold" : styles.clickable +" nav-link fw-bold"}>{tab?.title}</a>
                     </li>
                 })}
-                {/* <ng-container *ngFor="let tab of tabs">
-                    <li *ngIf="tab?.isHomeTab" routerLinkActive="active" class="nav-item me-3">
-                        <a (click)="setHomeAsActiveItem()"
-                            [ngClass]="{'active': (selectedElementName === tab?.['name'])}"
-                            className="nav-link fw-bold py-0" routerLink="/">
-                            <div className="row">
-                                <div [style.backgroundImage]="'url('+tab.logoImageUrl+')'" class="thumbnail me-1 col">
-                                </div>
-                                <span className="col pt-2 ps-0">{{tab?.['title']}}</span>
-                            </div>
-                        </a>
-                    </li>
-
-                    <li *ngIf="!tab?.isHomeTab && !tab?.isLoginTab && !tab?.isSignupTab" routerLinkActive="active"
-                        class="nav-item me-3">
-                        <a [ngClass]="{'active': (selectedElementName === tab?.['name'])}"
-                            class="nav-link fw-bold clickable" (click)="scrollTo(tab?.['name'])">{{tab?.['title']}}</a>
-                    </li>
-                </ng-container> */}
             </ul>
         </div>
     </div>
@@ -85,12 +61,6 @@ const NavBar = ({scrollTo}: Props) => {
                 <Link to='/login' className="nav-link text-dark fw-bold">{tab?.title}</Link>
             </li>
         })}
-        {/* <ng-container *ngFor="let tab of tabs">
-            <li *ngIf="tab?.isLoginTab || tab?.isSignupTab" class="nav-item py-0 btn btn-light btn-sm"
-                [ngClass]="[tab?.isLoginTab ? tab?.['marginRightClass'] : '']">
-                <a [routerLink]="tab?.['path']" class="nav-link text-dark fw-bold">{{tab?.['title']}}</a>
-            </li>
-        </ng-container> */}
     </ul>
 
     <MobileMenu scrollTo={scrollTo} isMobileMenuOpen={isMobileMenuOpen} toggleMenu={(isOpen) => setMobileMenuOpen(isOpen)}/>
