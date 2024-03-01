@@ -1,0 +1,44 @@
+.parents-info-title {
+        margin-bottom: 1.5rem;
+        margin-top: 1rem;
+}
+
+    .parents-info {
+        display: grid;
+        box-sizing: border-box;
+        overflow-x: scroll;
+        grid-template-columns: 100%;
+    }
+
+    .parents-info button  {
+        justify-self: start;
+    }   
+
+    .btn-sunrise-primary {
+        background: #0766a3;
+        color: #fff;
+    }
+
+    .btn-sunrise-primary:hover {
+        background: #0778be;
+        color: #fff;
+     }
+
+   @media screen and (min-width: 768px) {
+     .address-history table th{
+        width: none;
+        font-size: 0.9rem;
+        vertical-align: middle;
+      }
+}
+
+ @media screen and (min-width: 992px) {
+    .parents-info {
+        display: grid;
+        grid-template-columns: 100%;
+    }
+
+    .parents-info-title {
+        margin-bottom: 1.8rem;
+    }
+}

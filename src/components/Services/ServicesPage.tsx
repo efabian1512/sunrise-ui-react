@@ -20,7 +20,7 @@ const ServicesPage = forwardRef<HTMLDivElement>((props, ref) => {
                     <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
                     {SERVICES.map((service, index) => 
                     <div key={index}  className="col d-flex align-items-start">
-                    <Link to='/dashboard' style={{width: '100%'}} className={styles['services-anchor']}>
+                    <Link to={service.route ? '/'+service.route : '/dashboard'} style={{width: '100%'}} className={styles['services-anchor']}>
                         <div className="text-center mt-2">
                             <i className={service?.icon + ' ' + styles['services-icon'] + " bi me-3 icon-color h1"}></i>
                             <h5 className="fw-bold mt-2 mb-0">{service?.name}</h5>

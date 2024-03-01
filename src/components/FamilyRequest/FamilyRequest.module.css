@@ -1,0 +1,133 @@
+.family-request {
+        padding: 2rem;
+        margin: 0 auto;
+        max-width: 600px ;
+        width: 100%;
+}
+
+ .otherName-field {
+        margin-bottom: 1rem;
+  }
+
+  .address-history, .employment-history, .parents-info {
+        display: grid;
+        box-sizing: border-box;
+        overflow-x: scroll;
+        grid-template-columns: 100%;
+   }
+
+   .petitioner-form table th {
+     width: 2rem;
+    font-size: 0.7rem;
+    vertical-align: middle;
+   }
+  
+  .parents-info-title {
+        margin-bottom: 1.5rem;
+        margin-top: 1rem;
+   }
+
+    .address-history button, .employment-history button, .parents-info button  {
+        justify-self: start;
+    }
+
+@media screen and (min-width: 768px) {
+     .address-history table th{
+        width: none;
+        font-size: 0.9rem;
+        vertical-align: middle;
+      }
+
+   /* .address-history button, .employment-history button, .parents-info button {
+        justify-self: start;
+    } */
+}
+
+.main-options {
+    display: none;
+}
+
+@media screen and (min-width: 992px) {
+    .family-request {
+        /* display: grid; */
+        /* height: 100vh; */
+        /* grid-template-columns: 20% 80%; */
+        /* column-gap: 7rem; */
+        margin: 0;
+        max-width: none; 
+    }
+
+    /* .family-request form {
+       display: grid;
+       column-gap: 3rem;
+       grid-template-columns: repeat(2, 1fr);
+    } */
+
+    .personal-info {
+        padding: 2rem;
+    }
+    .personal-info, .marital-info, .physical-features {
+        display: grid;
+        column-gap: 3rem;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .address-history, .employment-history, .parents-info{
+        display: grid;
+        grid-template-columns: 100%;
+    }
+
+    .otherName-field {
+        margin-bottom: 1.7rem;
+    }
+
+    .petitioner-form table th{
+        width: none;
+        font-size: 1rem;
+        vertical-align: middle;
+    }
+
+    /* .marital-info {
+        display: grid;
+        column-gap: 3rem;
+        grid-template-columns: repeat(2, 1fr);
+    } */
+
+    .marital-general-info {
+        margin-top: 2.6rem;
+    }
+
+    /* .parents-info {
+        display: grid;
+        column-gap: 3rem;
+        grid-template-columns: repeat(2, 1fr);
+    } */
+
+    .parents-info-title {
+        margin-bottom: 1.8rem;
+    }
+
+    .main-options {
+        display: flex;
+    }
+
+    .tabs-area {
+        overflow-x: hidden;
+    }
+    
+
+    /* .physical-features {
+        display: grid;
+        column-gap: 3rem;
+        grid-template-columns: repeat(2, 1fr);
+    } */
+
+   
+    /* .personal-info-right {
+      
+    }
+
+    .personal-info-left {
+
+    } */
+}

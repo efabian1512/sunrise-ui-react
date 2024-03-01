@@ -1,0 +1,14 @@
+.padding-x-2 {
+    padding-right: 2rem;
+    padding-left: 2rem;
+}
+
+.padding-y-1 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.stable-primary th {
+    background: #0766a3;
+    color: #fff;
+}

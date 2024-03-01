@@ -1,7 +1,8 @@
 export const SERVICES = [
     {
         name: 'Petición Familiar',
-        icon: 'bi-house-heart-fill'
+        icon: 'bi-house-heart-fill',
+        route: 'peticion-familiar'
 
     },
     {

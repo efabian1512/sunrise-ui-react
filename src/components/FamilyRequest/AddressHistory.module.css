@@ -1,0 +1,44 @@
+
+.address-history {
+        display: grid;
+        box-sizing: border-box;
+        overflow-x: scroll;
+        grid-template-columns: 100%;
+}
+
+.address-history button  {
+        justify-self: start;
+}
+
+ .address-history table th{
+        width: none;
+        font-size: 0.9rem;
+        vertical-align: middle;
+        background: #0766a3;
+        color: #fff;
+ }
+
+ .btn-sunrise-primary {
+        background: #0766a3;
+        color: #fff;
+  }
+
+ .btn-sunrise-primary:hover {
+        background: #0778be;
+        color: #fff;
+  }
+
+ @media screen and (min-width: 768px) {
+     .address-history table th{
+        width: none;
+        font-size: 0.9rem;
+        vertical-align: middle;
+      }
+}
+
+ @media screen and (min-width: 992px) {
+    .address-history {
+        display: grid;
+        grid-template-columns: 100%;
+    }
+}

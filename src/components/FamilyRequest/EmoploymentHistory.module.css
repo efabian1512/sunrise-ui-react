@@ -1,0 +1,42 @@
+ .employment-history {
+        display: grid;
+        box-sizing: border-box;
+        overflow-x: scroll;
+        grid-template-columns: 100%;
+   }
+
+     .employment-history button {
+        justify-self: start;
+    }
+
+    .employment-history table th {
+        width: 2rem;
+        font-size: 0.7rem;
+        vertical-align: middle;
+   }
+
+   .btn-sunrise-primary {
+        background: #0766a3;
+        color: #fff;
+    }
+
+    .btn-sunrise-primary:hover {
+        background: #0778be;
+        color: #fff;
+     }
+
+@media screen and (min-width: 768px) {
+     .employment-history table th{
+        width: none;
+        font-size: 0.9rem;
+        vertical-align: middle;
+      }
+}
+
+    @media screen and (min-width: 992px) {
+         .employment-history  table th{
+            width: none;
+            font-size: 1rem;
+            vertical-align: middle;
+         }
+    }

@@ -34,7 +34,7 @@ const ContactPage = forwardRef<HTMLDivElement>((props, ref) => {
             </ng-container> */}
         </div>
     </div>
-    <div className={styles['contact-form'] +" col-md-6 col-sm-6 col-lg-6 py-5"}>
+    <div className={styles['contact-form'] +" py-5"}>
         <div className="ps-3 mb-5 mt-3 py-1 text-dark">
             <h3 className="text-center fw-bold">CONTACTANOS</h3>
         </div>

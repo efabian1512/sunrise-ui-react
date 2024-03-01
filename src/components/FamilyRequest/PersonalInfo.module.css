@@ -1,0 +1,38 @@
+
+/* 126de4 */
+
+    .otherName-field {
+        margin-bottom: 1rem;
+    }
+
+    .btn-sunrise-primary {
+        background: #0766a3;
+        color: #fff;
+    }
+
+    .btn-sunrise-primary:hover {
+        background: #0778be;
+        color: #fff;
+    }
+
+    @media screen and (min-width: 992px) {
+     
+        .personal-info, .physical-features {
+            display: grid;
+            column-gap: 3rem;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .otherName-field {
+            margin-bottom: 1.7rem;
+        }
+
+        .personal-info-form {
+            border: 1px solid #0766a3;
+        }
+
+        .personal-info-main {
+            padding: 1rem;
+        }
+
+    }
