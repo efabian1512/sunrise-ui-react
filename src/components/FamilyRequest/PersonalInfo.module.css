@@ -15,6 +15,12 @@
         color: #fff;
     }
 
+     .measurement-input {
+        display: flex;
+        width: 95%;
+        flex-wrap: nowrap;
+     }
+
     @media screen and (min-width: 992px) {
      
         .personal-info, .physical-features {
