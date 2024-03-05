@@ -28,6 +28,11 @@
         color: #fff;
   }
 
+  .btn-sunrise-primary:disabled {
+       background: #0778be;
+       color: #fff;
+  }
+
  @media screen and (min-width: 768px) {
      .address-history table th{
         width: none;

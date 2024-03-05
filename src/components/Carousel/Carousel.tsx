@@ -73,7 +73,7 @@ const Carousel = ({ config: { slideInterval = 5000, autoSlide = false, images = 
     </div>
     <div className="dsc-carousel__content">
         {items.map((image, index) => 
-             <img key={index} style={{marginLeft: image.marginLeft + '%'}} src={image.baseImageSrc} className="card-img-top dsc-carousel__content-item  rounded-0 " alt="image.imageAlt"/>
+             <img key={index} style={{marginLeft: image.marginLeft + '%', objectFit: 'cover'}} src={image.baseImageSrc} className="card-img-top dsc-carousel__content-item  rounded-0 " alt="image.imageAlt"/>
         )}
     </div>
     <div className="dsc-carousel__steps">

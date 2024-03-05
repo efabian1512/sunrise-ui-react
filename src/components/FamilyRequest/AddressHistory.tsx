@@ -26,7 +26,7 @@ const AddressHistory = () => {
                        <span className="h5 d-block mb-4">Historial de dirección de los últimos 5 años</span>
                      <button onClick={()=> toggleModal(true)} className="btn btn-primary mb-2">Agregar Dirección</button>
 
-                        <table className="table table-bordered table-striped mt-3 mb-5">
+                        {state.addressHistory.length > 0 && <table className="table table-bordered table-striped mt-3 mb-5">
                             <thead>
                                 <tr>
                                 <th className="fw-bold">Nombre y Número de la Calle</th>
@@ -45,12 +45,12 @@ const AddressHistory = () => {
                                     <td>{address.city}</td>
                                     <td>{address.state}</td>
                                     <td>{address.postalCode}</td>
-                                    <td>{address.since}</td>
-                                    <td>{address.toDate}</td>
+                                    <td>{address.sinceDate.toString()}</td>
+                                    <td>{address.toDate.toString()}</td>
                                 </tr>)}
                             </tbody>
-                         </table>
-                         <button onClick={onNavigate} className={styles['btn-sunrise-primary']+" btn"}>Siguiente</button>
+                         </table>}
+                         <button disabled={!(state.addressHistory.length > 0)} onClick={onNavigate} className={styles['btn-sunrise-primary']+" btn mt-1"}>Siguiente</button>
 
                          <AddressHistoryForm toggleModal={(isOpen) => toggleModal(isOpen)} isModalOpen={isModalOpen}/>
                      </div>
