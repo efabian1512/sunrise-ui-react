@@ -4,6 +4,7 @@ import useRegFormContext from '../Hooks/useRegFormContex';
 import styles from './AddressHistoryForm.module.css';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import Calendar from '../ReusableComponents/Calendar';
 
 interface Props {
     isModalOpen: boolean;
@@ -20,23 +21,22 @@ const schema = z.object({
           errorMap: (issue, { defaultError }) => ({
             message: issue.code === "invalid_date" ? 'La fecha es requerida.' : defaultError,
           }),
-        }).refine(data => data < new Date(), { message: 'La fecha debe ser en el pasado.'}),
+        }).refine(data => data <= new Date(), { message: 'La fecha debe ser en el pasado.'}),
     toDate: z.date({
           errorMap: (issue, { defaultError }) => ({
             message: issue.code === "invalid_date" ? 'La fecha es requerida.' : defaultError,
           }),
-        }).refine(data => data < new Date(), { message: 'Este campo es requerido.'})
+        }).refine(data => data <= new Date(), { message: 'La fecha debe ser en el pasado.'})
         
-}).refine(data => data.sinceDate > data.toDate, {message: 'La fecha de inicio no puede ser despues de la de finalizacion.', path: ['toDate']});
+}).refine(data => data.sinceDate < data.toDate, {message: 'La fecha de finalización debe ser después que la de inicio.', path: ['toDate']});
 
 type FormData = z.infer<typeof schema>;
 
 const AddressHistoryForm = ({isModalOpen, toggleModal}: Props) => {
 
-    const {register, handleSubmit, formState: {errors, isValid}, reset} =useForm<FormData>({resolver: zodResolver(schema)});
+    const {register, handleSubmit, formState: {errors, isValid}, reset, control} =useForm<FormData>({resolver: zodResolver(schema)});
     const { dispatch } = useRegFormContext();
-
-    console.log(schema);
+  
     const onSubmit = (data: FieldValues) => {
         dispatch({type: 'SET_ADDRESS_HISTORY', data});
         reset();
@@ -49,7 +49,10 @@ const AddressHistoryForm = ({isModalOpen, toggleModal}: Props) => {
         <div className="modal-content">
           <div className="modal-header">
             <h1 className="modal-title fs-5 fw-bold" id="exampleModalCenteredScrollableTitle">Dirección</h1>
-            <button onClick={()=> toggleModal(false)} type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button onClick={()=> {
+              reset();
+              toggleModal(false);
+            }} type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div className={styles['address-history-form']+" modal-body"}>
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -90,16 +93,18 @@ const AddressHistoryForm = ({isModalOpen, toggleModal}: Props) => {
 
                       <div className="mb-3 fw-bold">
                         <label htmlFor="sinceDate" className="form-label">Desde</label>
-                        <input type="date" className="form-control" id="sinceDate" {...register('sinceDate', {valueAsDate: true})}/>
+                        <Calendar name="sinceDate" control={control}/>
+                        {/* <input type="date" className="form-control" id="sinceDate" {...register('sinceDate', {valueAsDate: true})}/> */}
                         { errors.sinceDate && <div className="alert alert-danger mt-2">
                                                     <div> {errors.sinceDate?.message}</div></div> }
                       </div>
 
                       <div className="mb-3 fw-bold">
                         <label htmlFor="toDate" className="form-label">Hasta</label>
-                        <input type="date" className="form-control" id="toDate" {...register('toDate', {valueAsDate: true})}/>
+                        {/* <input type="date" className="form-control" id="toDate" {...register('toDate', {valueAsDate: true})}/> */}
+                        <Calendar name="toDate" control={control}/>
                         { errors.toDate && <div className="alert alert-danger mt-2">
-                                                    <div> {errors.toDate?.message}</div></div> }
+                        <div> {errors.toDate?.message}</div></div> }
                       </div>
                        <div className="modal-footer">
                             <button onClick={()=> {

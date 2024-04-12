@@ -1,9 +1,14 @@
 import styles from './PersonalInfo.module.css';
-import { useForm, FieldValues } from 'react-hook-form';
+import { useForm, FieldValues, Controller } from 'react-hook-form';
 import useRegFormContext from '../Hooks/useRegFormContex';
 import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useCountries } from '../Hooks/useCountries';
+import { setCountryFirst, sortCountries } from '../../Utilities';
+import Calendar from '../ReusableComponents/Calendar';
+
+
 
 const schema = z.object({
     socialSecurity: z.string().min(9,{message: 'Inserte los 9 caracteres del seguro social' })
@@ -22,8 +27,8 @@ const schema = z.object({
     phoneNumber: z.string().min(1, {message: 'El numero de telefono es requerido.'}),
     email: z.string().min(1, {message: 'El correo electrónico es requerido.'}).email('El correo electrónico es inválido.'),
     race: z.string().min(1, {message: 'Este campo es requerido.'}),
-    height: z.number({invalid_type_error: 'Este campo es requerido'}).min(0.1, {message: 'El valor de ver ser mayor a 0.'}),
-    weight: z.number({invalid_type_error: 'Este campo es requerido'}).min(0.1, {message: 'El valor de ver ser mayor a 0.'}),
+    height: z.number({invalid_type_error: 'Este campo es requerido'}).min(0.1, {message: 'El valor debe ser mayor a 0.'}),
+    weight: z.number({invalid_type_error: 'Este campo es requerido'}).min(0.1, {message: 'El valor debe ser mayor a 0.'}),
     eyesColor: z.string().min(1, {message: 'Este campo es requerido.'})
 });
 
@@ -31,16 +36,18 @@ type FormData = z.infer<typeof schema>;
 
 const PersonalInfo = () => {
 
+        const { data } = useCountries();
 
+        const countries = setCountryFirst(data?.sort(sortCountries)!, 'DOM');
+    
         const {state, dispatch} = useRegFormContext();
-        const { register, handleSubmit, reset, formState: {isValid, errors} } = useForm<FormData>({resolver: zodResolver(schema)});
+        const { register, handleSubmit, reset, formState: {isValid, errors}, control } = useForm<FormData>({resolver: zodResolver(schema)});
         const navigate = useNavigate();
 
-            console.log(errors);
-
         const onSubmit = (data: FieldValues) => {
+            const info = {...data, dateOfBirth: data.dateOfBirth.toLocaleDateString()}
             if (isValid) {
-                dispatch({type: 'SET_COMMON_DATA', data: data});
+                dispatch({type: 'SET_COMMON_DATA', data: info});
                 navigate('/peticion-familiar/address-history');
             }
         }
@@ -79,7 +86,10 @@ const PersonalInfo = () => {
                                     </div>
                                      <div className="mb-3 fw-bold">
                                         <label htmlFor="countryOfBirth" className="form-label">Pais de Nacimiento</label>
-                                        <input type="text" className="form-control" id="countryOfBirth" {...register('countryOfBirth')}/>
+                                        <select className={styles['country-select'] + " form-select"} {...register('countryOfBirth')} id="countryOfBirth" >
+                                            <option value=""></option>
+                                            {countries?.map(country => <option key={country.fifa} value={country.fifa}>{country.name.common}</option>)}
+                                        </select>
                                          { errors.countryOfBirth && <div className="alert alert-danger mt-2">
                                                     <div> {errors.countryOfBirth?.message}</div></div> }
                                     </div>
@@ -87,7 +97,8 @@ const PersonalInfo = () => {
                                <div>
                                      <div className="mb-3 fw-bold">
                                         <label htmlFor="dateOfBirth" className="form-label">Fecha de Nacimiento</label>
-                                        <input type="date" className="form-control" id="dateOfBirth" {...register('dateOfBirth', {valueAsDate: true})}/>
+                                        <Calendar control={control} name="dateOfBirth"/>
+                                        {/* <input type="datetime-local" className="form-control" id="dateOfBirth" {...register('dateOfBirth', {valueAsDate: true})}/> */}
                                         { errors.dateOfBirth && <div className="alert alert-danger mt-2">
                                                     <div> {errors.dateOfBirth?.message}</div></div> }
                                     </div>

@@ -3,7 +3,7 @@ import RegFormContext from '../Contexts/RegFormContext';
 
 export interface  FamilyInfo { 
     common: {[key: string]: string},
-    addressHistory: {[key: string]: string}[],
+    addressHistory: {[key: string]: string | Date}[],
     marriageInfo: {[key: string]: string},
     parentsInfo: {[key: string]: string}[],
     employmentHistory: {[key: string]: string}[],

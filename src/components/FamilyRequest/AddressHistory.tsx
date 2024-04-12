@@ -10,6 +10,8 @@ const AddressHistory = () => {
     const {state, dispatch} = useRegFormContext();
     const navigate = useNavigate();
 
+    console.log(state);
+
     const addressHistory = state.addressHistory ? state.addressHistory : [];
 
     const [isModalOpen, toggleModal] = useState(false);
@@ -40,13 +42,13 @@ const AddressHistory = () => {
                             </thead>
                             <tbody>
                                 {addressHistory.map((address, index) => <tr key={index}>
-                                    <td>{address.street}</td>
-                                    <td>{address.aprt}</td>
-                                    <td>{address.city}</td>
-                                    <td>{address.state}</td>
-                                    <td>{address.postalCode}</td>
-                                    <td>{address.sinceDate.toString()}</td>
-                                    <td>{address.toDate.toString()}</td>
+                                    <td>{address.street as string}</td>
+                                    <td>{address.aprt as string}</td>
+                                    <td>{address.city as string}</td>
+                                    <td>{address.state as string}</td>
+                                    <td>{address.postalCode as string}</td>
+                                    <td>{(address.sinceDate as Date).toLocaleDateString()}</td>
+                                    <td>{(address.toDate as Date).toLocaleDateString()}</td>
                                 </tr>)}
                             </tbody>
                          </table>}

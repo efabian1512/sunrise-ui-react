@@ -5,9 +5,18 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { RouterProvider } from 'react-router-dom';
 import router from './routing/routes';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import '@radix-ui/themes/styles.css';
+import { Theme } from '@radix-ui/themes';
+
+const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-     <RouterProvider router={router}/>
+    <QueryClientProvider client={queryClient}>
+      <Theme>
+       <RouterProvider router={router}/>
+      </Theme>
+    </QueryClientProvider>
   </React.StrictMode>
 );

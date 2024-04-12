@@ -1,4 +1,5 @@
 import { FieldValues, useForm } from "react-hook-form";
+import { useCountries } from "../Hooks/useCountries";
 import useRegFormContext from "../Hooks/useRegFormContex";
 import generalStyle from '/src/GeneralStyle.module.css';
 
@@ -10,6 +11,9 @@ interface Props {
 
 
 const ParentsInfoForm = ({isModalOpen, toggleModal}: Props) => {
+
+      const {data} = useCountries();
+      console.log(data);
      const {register, handleSubmit, formState: {errors, isValid}, reset} = useForm();
     const { dispatch } = useRegFormContext();
 
