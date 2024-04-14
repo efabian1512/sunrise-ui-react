@@ -5,8 +5,8 @@ export interface  FamilyInfo {
     common: {[key: string]: string},
     addressHistory: {[key: string]: string | Date}[],
     marriageInfo: {[key: string]: string},
-    parentsInfo: {[key: string]: string}[],
-    employmentHistory: {[key: string]: string}[],
+    parentsInfo: {[key: string]: string | Date}[],
+    employmentHistory: {[key: string]: string | Date}[],
     percent: number
 }
 

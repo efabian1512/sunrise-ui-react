@@ -38,12 +38,12 @@ const ParentsInfo = () => {
                              </thead>
                              <tbody>
                                  {state.parentsInfo.map((parent, index) => <tr key={index}>
-                                     <td>{parent.name}</td>
-                                     <td>{parent.birthDate}</td>
-                                     <td>{parent.birthCountry}</td>
-                                     <td>{parent.birthCity}</td>
-                                     <td>{parent.residencePlace}</td>
-                                     <td>{parent.sex}</td>  
+                                     <td>{parent.name as string}</td>
+                                    <td>{(parent.birthDate as Date).toLocaleDateString()}</td>
+                                     <td>{parent.birthCountry as string}</td>
+                                     <td>{parent.birthCity as string}</td>
+                                     <td>{parent.residencePlace as string}</td>
+                                     <td>{parent.sex as string}</td>  
                                  </tr>)}
                              </tbody>
                          </table>

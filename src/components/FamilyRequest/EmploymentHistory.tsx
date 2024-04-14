@@ -28,11 +28,11 @@ const EmploymentHistory = () => {
                         </thead>
                         <tbody>
                             {state.employmentHistory.map((employment, index) => <tr key={index}>
-                                <td>{employment.enterpriseName}</td>
-                                <td>{employment.enterpriseAddress}</td>
-                                <td>{employment.occupation}</td>
-                                <td>{employment.sinceDate}</td>
-                                <td>{employment.toDate}</td>
+                                <td>{employment.enterpriseName as string}</td>
+                                <td>{employment.enterpriseAddress as string}</td>
+                                <td>{employment.occupation as string}</td>
+                                <td>{(employment.sinceDate as Date).toLocaleDateString()}</td>
+                                <td>{(employment.toDate as Date).toLocaleDateString()}</td>
                             </tr>)}
                         </tbody>
                     </table>

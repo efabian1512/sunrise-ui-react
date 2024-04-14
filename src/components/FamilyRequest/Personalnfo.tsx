@@ -7,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useCountries } from '../Hooks/useCountries';
 import { setCountryFirst, sortCountries } from '../../Utilities';
 import Calendar from '../ReusableComponents/Calendar';
+import { useEffect } from 'react';
 
 
 
@@ -51,6 +52,13 @@ const PersonalInfo = () => {
                 navigate('/peticion-familiar/address-history');
             }
         }
+
+         history.pushState(null, '', location.href);
+             window.onpopstate = function(event: any) {
+                 console.log(event);
+             history.go(1);
+        };
+        
         return <form className={styles["personal-info-form"]} onSubmit={handleSubmit(onSubmit)}>
             <div className={styles['personal-info-main']}>
                 <h4 className="mb-0">Datos Personales:</h4>

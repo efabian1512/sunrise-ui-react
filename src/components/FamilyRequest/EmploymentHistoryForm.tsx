@@ -1,7 +1,9 @@
 import { FieldValues, useForm } from "react-hook-form";
 import useRegFormContext from "../Hooks/useRegFormContex";
 import generalStyle from '/src/GeneralStyle.module.css';
-
+import z from 'zod';
+import { zodResolver } from "@hookform/resolvers/zod";
+import Calendar from '../ReusableComponents/Calendar';
 
 
 interface Props {
@@ -10,8 +12,26 @@ interface Props {
 }
 
 
+const schema = z.object({
+  enterpriseName: z.string().min(1, 'Este campo es requerido.'),
+  enterpriseAddress: z.string().min(1, 'Este campo es requerido.'),
+  occupation: z.string().min(1, 'Este campo es requerido.'),
+  sinceDate: z.date({
+          errorMap: (issue, { defaultError }) => ({
+            message: issue.code === "invalid_date" ? 'La fecha es requerida.' : defaultError,
+          }),
+        }).refine(data => data <= new Date(), { message: 'La fecha debe ser en el pasado.'}),
+  toDate: z.date({
+          errorMap: (issue, { defaultError }) => ({
+            message: issue.code === "invalid_date" ? 'La fecha es requerida.' : defaultError,
+          }),
+        }).refine(data => data <= new Date(), { message: 'La fecha debe ser en el pasado.'}),
+}).refine(data => data.sinceDate < data.toDate, {message: 'La fecha de finalización debe ser después que la de inicio.', path: ['toDate']});
+
+type FormData = z.infer<typeof schema>;
+
 const EmploymentHistoryForm = ({isModalOpen, toggleModal}: Props) => {
-     const {register, handleSubmit, formState: {errors, isValid}, reset} = useForm();
+     const {register, handleSubmit, formState: {errors, isValid}, reset, control} = useForm<FormData>({resolver: zodResolver(schema)});
     const { dispatch } = useRegFormContext();
 
     const onSubmit = (data: FieldValues) => {
@@ -47,12 +67,14 @@ const EmploymentHistoryForm = ({isModalOpen, toggleModal}: Props) => {
 
                       <div className="mb-3 fw-bold">
                         <label htmlFor="sinceDate" className="form-label">Desde</label>
-                        <input type="date" className="form-control" id="sinceDate" {...register('sinceDate')}/>
+                        <Calendar name="sinceDate" control={control}/>
+                        {/* <input type="date" className="form-control" id="sinceDate" {...register('sinceDate')}/> */}
                       </div>
 
                       <div className="mb-3 fw-bold">
                         <label htmlFor="toDate" className="form-label">Hasta</label>
-                        <input type="date" className="form-control" id="toDate" {...register('toDate')}/>
+                        <Calendar name="toDate" control={control}/>
+                        {/* <input type="date" className="form-control" id="toDate" {...register('toDate')}/> */}
                       </div>
 
                        <div className="modal-footer">
