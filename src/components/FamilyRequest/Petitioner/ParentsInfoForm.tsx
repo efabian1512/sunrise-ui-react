@@ -1,10 +1,10 @@
 import { FieldValues, useForm } from "react-hook-form";
-import { useCountries } from "../Hooks/useCountries";
-import useRegFormContext from "../Hooks/useRegFormContex";
+import { useCountries } from "../../Hooks/useCountries";
+import useRegFormContext from "../../Hooks/useRegFormContex";
 import generalStyle from '/src/GeneralStyle.module.css';
-import Calendar from '../ReusableComponents/Calendar';
+import Calendar from '../../ReusableComponents/Calendar';
 import z from 'zod';
-import { setCountryFirst, sortCountries } from "../../Utilities";
+import { setCountryFirst, sortCountries } from "../../../Utilities";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 

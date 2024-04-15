@@ -1,9 +1,9 @@
 import { FieldValues, useForm } from "react-hook-form";
-import useRegFormContext from "../Hooks/useRegFormContex";
+import useRegFormContext from "../../Hooks/useRegFormContex";
 import generalStyle from '/src/GeneralStyle.module.css';
 import z from 'zod';
 import { zodResolver } from "@hookform/resolvers/zod";
-import Calendar from '../ReusableComponents/Calendar';
+import Calendar from '../../ReusableComponents/Calendar';
 
 
 interface Props {

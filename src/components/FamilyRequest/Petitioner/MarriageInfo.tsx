@@ -3,10 +3,10 @@ import { useEffect } from 'react';
 import { FieldValues, useFieldArray, useForm, useWatch } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import z from 'zod';
-import { setCountryFirst, sortCountries } from '../../Utilities';
-import { useCountries } from '../Hooks/useCountries';
-import useRegFormContext from '../Hooks/useRegFormContex';
-import Calendar from '../ReusableComponents/Calendar';
+import { setCountryFirst, sortCountries } from '../../../Utilities';
+import { useCountries } from '../../Hooks/useCountries';
+import useRegFormContext from '../../Hooks/useRegFormContex';
+import Calendar from '../../ReusableComponents/Calendar';
 import styles from './MarriageInfo.module.css';
 
 

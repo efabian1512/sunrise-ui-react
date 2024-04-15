@@ -1,5 +1,5 @@
 import styles from './EmoploymentHistory.module.css';
-import useRegFormContext from '../Hooks/useRegFormContex';
+import useRegFormContext from '../../Hooks/useRegFormContex';
 import { useEffect, useState } from 'react';
 import generalStyle from '/src/GeneralStyle.module.css';
 import EmploymentHistoryForm from './EmploymentHistoryForm';

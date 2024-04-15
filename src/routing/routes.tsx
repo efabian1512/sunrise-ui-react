@@ -2,12 +2,12 @@ import { createBrowserRouter } from "react-router-dom";
 import HomePage from "../components/HomePage";
 import LoginPage from '../components/Login/LoginPage';
 import Dashboard from '../components/Dashboard/Dashboard';
-import FamilyRequest from '../components/FamilyRequest/FamilyRequest';
-import PersonalInfo from '../components/FamilyRequest/Personalnfo';
-import AddressHistory from "../components/FamilyRequest/AddressHistory";
-import MarriageInfo from "../components/FamilyRequest/MarriageInfo";
-import ParentsInfo from "../components/FamilyRequest/ParentsInfo";
-import EmploymentHistory from "../components/FamilyRequest/EmploymentHistory";
+import PersonalInfo from '../components/FamilyRequest/Petitioner/Personalnfo';
+import AddressHistory from "../components/FamilyRequest/Petitioner/AddressHistory";
+import MarriageInfo from "../components/FamilyRequest/Petitioner/MarriageInfo";
+import ParentsInfo from "../components/FamilyRequest/Petitioner/ParentsInfo";
+import EmploymentHistory from "../components/FamilyRequest/Petitioner/EmploymentHistory";
+import FamilyRequest from '../components/FamilyRequest/Petitioner/FamilyRequest';
 
 const router = createBrowserRouter([
     {path: '', element: <HomePage/>},

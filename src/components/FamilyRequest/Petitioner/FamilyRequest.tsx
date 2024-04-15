@@ -1,20 +1,12 @@
-import { useForm, FieldValues } from 'react-hook-form';
-import styles from './FamilyRequest.module.css';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
+import { FieldValues, useForm } from 'react-hook-form';
 import { Outlet } from 'react-router-dom';
-import RegFormProvider from '../../providers/RegFormProvider';
-import ProgressBar from '../ProgressBar/ProgressBar';
+import 'react-tabs/style/react-tabs.css';
+import RegFormProvider from '../../../providers/RegFormProvider';
+import ProgressBar from '../../ProgressBar/ProgressBar';
+import styles from './FamilyRequest.module.css';
 
 
 const FamilyRequest = () => {
-
-    const { register, handleSubmit, reset } = useForm();
-     const onSubmitForm = (data: FieldValues) => {
-         debugger;
-        console.log(data);
-        reset();
-     }
 
     return  <RegFormProvider>
   

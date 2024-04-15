@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './ParentsInfo.module.css';
-import useRegFormContext from '../Hooks/useRegFormContex';
+import useRegFormContext from '../../Hooks/useRegFormContex';
 import ParentsInfoForm from './ParentsInfoForm';
 import generalStyle from '/src/GeneralStyle.module.css';
 

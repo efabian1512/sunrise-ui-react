@@ -1,15 +1,12 @@
-import styles from './PersonalInfo.module.css';
-import { useForm, FieldValues, Controller } from 'react-hook-form';
-import useRegFormContext from '../Hooks/useRegFormContex';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { FieldValues, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useCountries } from '../Hooks/useCountries';
-import { setCountryFirst, sortCountries } from '../../Utilities';
-import Calendar from '../ReusableComponents/Calendar';
-import { useEffect } from 'react';
-
-
+import { setCountryFirst, sortCountries } from '../../../Utilities';
+import { useCountries } from '../../Hooks/useCountries';
+import useRegFormContext from '../../Hooks/useRegFormContex';
+import Calendar from '../../ReusableComponents/Calendar';
+import styles from './PersonalInfo.module.css';
 
 const schema = z.object({
     socialSecurity: z.string().min(9,{message: 'Inserte los 9 caracteres del seguro social' })
