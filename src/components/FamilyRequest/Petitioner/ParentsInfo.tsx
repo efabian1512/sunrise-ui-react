@@ -1,19 +1,22 @@
 
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { changeFamReqPercent } from '../../../GlobalState/FamilyRequest/familyRequestPetSlice';
+import { RootState } from '../../../GlobalState/store';
 import styles from './ParentsInfo.module.css';
-import useRegFormContext from '../../Hooks/useRegFormContex';
 import ParentsInfoForm from './ParentsInfoForm';
 import generalStyle from '/src/GeneralStyle.module.css';
 
 const ParentsInfo = () => {
 
-    const {state, dispatch} = useRegFormContext();
+   const state = useSelector((state: RootState) => state.familyRequestPet);
+   const dispatch = useDispatch();
 
     const [isModalOpen, toggleModal] = useState(false);
 
      useEffect(()=> {
-            dispatch({type: 'CHANGE_PERCENT', data: state.percent ? state.percent  + 20: 0});
+            dispatch(changeFamReqPercent(5));
      }, [])
 
     const navigate = useNavigate();
@@ -37,9 +40,9 @@ const ParentsInfo = () => {
                                  </tr>
                              </thead>
                              <tbody>
-                                 {state.parentsInfo.map((parent, index) => <tr key={index}>
+                                 {state.petParentsInfo.map((parent, index) => <tr key={index}>
                                      <td>{parent.name as string}</td>
-                                    <td>{(parent.birthDate as Date).toLocaleDateString()}</td>
+                                    <td>{(parent.birthDate as string)}</td>
                                      <td>{parent.birthCountry as string}</td>
                                      <td>{parent.birthCity as string}</td>
                                      <td>{parent.residencePlace as string}</td>

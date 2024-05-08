@@ -1,24 +1,30 @@
-import styles from './AddressHistory.module.css';
-
-import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { changeFamReqPercent } from '../../../GlobalState/FamilyRequest/familyRequestPetSlice';
+import { RootState } from '../../../GlobalState/store';
+import styles from './AddressHistory.module.css';
 import AddressHistoryForm from './AddressHistoryForm';
-import useRegFormContext from '../../Hooks/useRegFormContex';
+
 
 
 const AddressHistory = () => {
 
-    const {state, dispatch} = useRegFormContext();
+    // const {state, dispatch} = useRegFormContext();
+     const state = useSelector((state: RootState) => state.familyRequestPet);
+     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    console.log(state);
 
-    const addressHistory = state.addressHistory ? state.addressHistory : [];
+
+    const addressHistory = state.petAddressHistory ? state.petAddressHistory : [];
+
+    console.log(addressHistory);
 
     const [isModalOpen, toggleModal] = useState(false);
 
     useEffect(()=> {
-        dispatch({type: 'CHANGE_PERCENT', data: 20});
+        dispatch(changeFamReqPercent(5));
     }, [])
 
     const onNavigate = () => {
@@ -29,7 +35,7 @@ const AddressHistory = () => {
                        <span className="h5 d-block mb-4">Historial de dirección de los últimos 5 años</span>
                      <button onClick={()=> toggleModal(true)} className="btn btn-primary mb-2">Agregar Dirección</button>
 
-                        {state.addressHistory.length > 0 && <table className="table table-bordered table-striped mt-3 mb-5">
+                        {state.petAddressHistory.length > 0 && <table className="table table-bordered table-striped mt-3 mb-5">
                             <thead>
                                 <tr>
                                 <th className="fw-bold">Nombre y Número de la Calle</th>
@@ -48,12 +54,12 @@ const AddressHistory = () => {
                                     <td>{address.city as string}</td>
                                     <td>{address.state as string}</td>
                                     <td>{address.postalCode as string}</td>
-                                    <td>{(address.sinceDate as Date).toLocaleDateString()}</td>
-                                    <td>{(address.toDate as Date).toLocaleDateString()}</td>
+                                    <td>{address.sinceDate as string}</td>
+                                    <td>{(address.toDate as string)}</td>
                                 </tr>)}
                             </tbody>
                          </table>}
-                         <button disabled={!(state.addressHistory.length > 0)} onClick={onNavigate} className={styles['btn-sunrise-primary']+" btn mt-1"}>Siguiente</button>
+                         <button disabled={!(state.petAddressHistory.length > 0)} onClick={onNavigate} className={styles['btn-sunrise-primary']+" btn mt-1"}>Siguiente</button>
 
                          <AddressHistoryForm toggleModal={(isOpen) => toggleModal(isOpen)} isModalOpen={isModalOpen}/>
                      </div>

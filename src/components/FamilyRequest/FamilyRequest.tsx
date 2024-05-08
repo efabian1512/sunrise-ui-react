@@ -1,22 +1,17 @@
-import { FieldValues, useForm } from 'react-hook-form';
 import { Outlet } from 'react-router-dom';
 import 'react-tabs/style/react-tabs.css';
-import RegFormProvider from '../../../providers/RegFormProvider';
-import ProgressBar from '../../ProgressBar/ProgressBar';
+import ProgressBar from '../ProgressBar/ProgressBar';
 import styles from './FamilyRequest.module.css';
 
 
 const FamilyRequest = () => {
 
-    return  <RegFormProvider>
-  
-            <div className={styles['family-request']}>
+    return  <div className={styles['family-request']}>
                 <h2 className="mb-4">Peticion Familiar</h2>
                 <div className="mb-5"><ProgressBar/></div>
-                <h3>Peticionario</h3>
                 <Outlet/>
              </div>
-        </RegFormProvider>
+        
            
    
  

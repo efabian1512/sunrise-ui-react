@@ -1,10 +1,11 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FieldValues, useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
+import { setPetCommonData } from '../../../GlobalState/FamilyRequest/familyRequestPetSlice';
 import { setCountryFirst, sortCountries } from '../../../Utilities';
 import { useCountries } from '../../Hooks/useCountries';
-import useRegFormContext from '../../Hooks/useRegFormContex';
 import Calendar from '../../ReusableComponents/Calendar';
 import styles from './PersonalInfo.module.css';
 
@@ -38,14 +39,18 @@ const PersonalInfo = () => {
 
         const countries = setCountryFirst(data?.sort(sortCountries)!, 'DOM');
     
-        const {state, dispatch} = useRegFormContext();
+        // const {state, dispatch} = useRegFormContext();
+
+        const dispatch = useDispatch();
+
         const { register, handleSubmit, reset, formState: {isValid, errors}, control } = useForm<FormData>({resolver: zodResolver(schema)});
         const navigate = useNavigate();
 
         const onSubmit = (data: FieldValues) => {
             const info = {...data, dateOfBirth: data.dateOfBirth.toLocaleDateString()}
             if (isValid) {
-                dispatch({type: 'SET_COMMON_DATA', data: info});
+                dispatch(setPetCommonData(info));
+                // dispatch({type: 'SET_COMMON_DATA', data: info});
                 navigate('/peticion-familiar/address-history');
             }
         }

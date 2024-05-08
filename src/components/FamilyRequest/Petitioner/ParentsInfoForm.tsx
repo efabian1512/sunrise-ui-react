@@ -6,6 +6,8 @@ import Calendar from '../../ReusableComponents/Calendar';
 import z from 'zod';
 import { setCountryFirst, sortCountries } from "../../../Utilities";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useDispatch } from 'react-redux';
+import { setPetParentsInfo } from "../../../GlobalState/FamilyRequest/familyRequestPetSlice";
 
 
 interface Props {
@@ -32,14 +34,15 @@ type FormData = z.infer<typeof schema>;
 const ParentsInfoForm = ({isModalOpen, toggleModal}: Props) => {
 
       const {data} = useCountries();
-      console.log(data);
+   
      const {register, handleSubmit, formState: {errors, isValid}, reset, control} = useForm<FormData>({resolver: zodResolver(schema)});
-    const { dispatch } = useRegFormContext();
+    const dispatch  = useDispatch();
 
     const countries = setCountryFirst(data?.sort(sortCountries)!, 'DOM');
 
     const onSubmit = (data: FieldValues) => {
-        dispatch({type: 'SET_PARENTS_INFO', data});
+      const info = {...data, birthDate: data.birthDate.toLocaleDateString() }
+        dispatch(setPetParentsInfo(info));
         reset();
         toggleModal(false);
     }

@@ -1,11 +1,13 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect } from 'react';
-import { FieldValues, useFieldArray, useForm, useWatch } from 'react-hook-form';
+import { FieldValues, useForm, useWatch } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import z from 'zod';
+import { changeFamReqPercent } from '../../../GlobalState/FamilyRequest/familyRequestPetSlice';
+import { RootState } from '../../../GlobalState/store';
 import { setCountryFirst, sortCountries } from '../../../Utilities';
 import { useCountries } from '../../Hooks/useCountries';
-import useRegFormContext from '../../Hooks/useRegFormContex';
 import Calendar from '../../ReusableComponents/Calendar';
 import styles from './MarriageInfo.module.css';
 
@@ -66,7 +68,8 @@ const MarriageInfo = () => {
      const {  register, handleSubmit, reset, formState: {errors, isValid}, control } = useForm<FormData>({resolver: zodResolver(schema)});
      const marriagesNumber = useWatch({control, name: 'marriages'});
      const maritialStatus = useWatch({control, name: 'maritialStatus'})
-     const {state, dispatch } = useRegFormContext();
+     const state = useSelector((state: RootState) => state.familyRequestPet);
+     const dispatch = useDispatch();
      const navigate = useNavigate();
 
     const {data} = useCountries();
@@ -91,7 +94,7 @@ const MarriageInfo = () => {
 
         useEffect(()=> {
             console.log(state);
-            dispatch({type: 'CHANGE_PERCENT', data: state.percent ? state.percent  + 20: 0});
+            dispatch(changeFamReqPercent(5));
         }, [])
 
 

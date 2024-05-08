@@ -5,6 +5,8 @@ import styles from './AddressHistoryForm.module.css';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Calendar from '../../ReusableComponents/Calendar';
+import { useDispatch } from 'react-redux';
+import { setPetAddressHistory } from '../../../GlobalState/FamilyRequest/familyRequestPetSlice';
 
 interface Props {
     isModalOpen: boolean;
@@ -35,10 +37,11 @@ type FormData = z.infer<typeof schema>;
 const AddressHistoryForm = ({isModalOpen, toggleModal}: Props) => {
 
     const {register, handleSubmit, formState: {errors, isValid}, reset, control} =useForm<FormData>({resolver: zodResolver(schema)});
-    const { dispatch } = useRegFormContext();
+    const dispatch = useDispatch();
   
     const onSubmit = (data: FieldValues) => {
-        dispatch({type: 'SET_ADDRESS_HISTORY', data});
+      const info = {...data, sinceDate: data.sinceDate.toLocaleDateString(), toDate: data.toDate.toLocaleDateString()};
+        dispatch(setPetAddressHistory(info));
         reset();
         toggleModal(false);
     }

@@ -4,6 +4,8 @@ import generalStyle from '/src/GeneralStyle.module.css';
 import z from 'zod';
 import { zodResolver } from "@hookform/resolvers/zod";
 import Calendar from '../../ReusableComponents/Calendar';
+import { useDispatch } from 'react-redux';
+import { setPetEmploymentHistory } from "../../../GlobalState/FamilyRequest/familyRequestPetSlice";
 
 
 interface Props {
@@ -32,10 +34,11 @@ type FormData = z.infer<typeof schema>;
 
 const EmploymentHistoryForm = ({isModalOpen, toggleModal}: Props) => {
      const {register, handleSubmit, formState: {errors, isValid}, reset, control} = useForm<FormData>({resolver: zodResolver(schema)});
-    const { dispatch } = useRegFormContext();
+    const dispatch  = useDispatch();
 
     const onSubmit = (data: FieldValues) => {
-        dispatch({type: 'SET_EMPLOYMENT_HISTORY', data});
+        const info = {...data, sinceDate: data.sinceDate.toLocaleDateString(), toDate: data.toDate.toLocaleDateString()};
+        dispatch(setPetEmploymentHistory(info));
         reset();
         toggleModal(false);
     }

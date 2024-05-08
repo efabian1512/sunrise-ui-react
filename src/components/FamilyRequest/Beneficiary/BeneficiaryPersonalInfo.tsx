@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useEffect } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
@@ -6,7 +7,11 @@ import { setCountryFirst, sortCountries } from '../../../Utilities';
 import { useCountries } from '../../Hooks/useCountries';
 import useRegFormContext from '../../Hooks/useRegFormContex';
 import Calendar from '../../ReusableComponents/Calendar';
-import styles from './PersonalInfo.module.css';
+import styles from '../Petitioner/Personalinfo.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../../GlobalState/store';
+import { changeFamReqPercent } from '../../../GlobalState/FamilyRequest/familyRequestPetSlice';
+import { setBenCommonData } from '../../../GlobalState/FamilyRequest/familyRequestBenSlice';
 
 const schema = z.object({
     socialSecurity: z.string().max(9, {message: 'El seguro social solo cuenta con 9 caracteres'}).optional(),
@@ -36,15 +41,16 @@ const BeneficiaryPersonalInfo = () => {
         const { data } = useCountries();
 
         const countries = setCountryFirst(data?.sort(sortCountries)!, 'DOM');
-    
-        const {state, dispatch} = useRegFormContext();
+        const state = useSelector((state: RootState) => state.familyRequestBen);
+
+        const dispatch = useDispatch();
         const { register, handleSubmit, reset, formState: {isValid, errors}, control } = useForm<FormData>({resolver: zodResolver(schema)});
         const navigate = useNavigate();
 
         const onSubmit = (data: FieldValues) => {
             const info = {...data, dateOfBirth: data.dateOfBirth.toLocaleDateString()}
             if (isValid) {
-                dispatch({type: 'SET_COMMON_DATA', data: info});
+                dispatch(setBenCommonData(info));
                 navigate('/peticion-familiar/address-history');
             }
         }
@@ -54,6 +60,10 @@ const BeneficiaryPersonalInfo = () => {
                  console.log(event);
              history.go(1);
         };
+
+         useEffect(()=> {
+            dispatch(changeFamReqPercent(5));
+         }, []);
         
         return <form className={styles["personal-info-form"]} onSubmit={handleSubmit(onSubmit)}>
             <div className={styles['personal-info-main']}>

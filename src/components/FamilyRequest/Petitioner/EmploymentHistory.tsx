@@ -1,16 +1,22 @@
-import styles from './EmoploymentHistory.module.css';
-import useRegFormContext from '../../Hooks/useRegFormContex';
 import { useEffect, useState } from 'react';
-import generalStyle from '/src/GeneralStyle.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { changeFamReqPercent } from '../../../GlobalState/FamilyRequest/familyRequestPetSlice';
+import { RootState } from '../../../GlobalState/store';
+import styles from './EmoploymentHistory.module.css';
 import EmploymentHistoryForm from './EmploymentHistoryForm';
+import generalStyle from '/src/GeneralStyle.module.css';
 
 const EmploymentHistory = () => {
 
-     const {state, dispatch} = useRegFormContext();
+     const state = useSelector((state: RootState) => state.familyRequestPet);
+     
+     const dispatch = useDispatch();
      const [isModalOpen, toggleModal] = useState(false);
+     const navigate = useNavigate();
 
       useEffect(()=> {
-            dispatch({type: 'CHANGE_PERCENT', data: state.percent ? state.percent  + 20: 0});
+            dispatch(changeFamReqPercent(5));
      }, []);
     
     return      <div className={styles['employment-history'] +" mb-3"}>
@@ -27,20 +33,20 @@ const EmploymentHistory = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {state.employmentHistory.map((employment, index) => <tr key={index}>
+                            {state.petEmploymentHistory.map((employment, index) => <tr key={index}>
                                 <td>{employment.enterpriseName as string}</td>
                                 <td>{employment.enterpriseAddress as string}</td>
                                 <td>{employment.occupation as string}</td>
-                                <td>{(employment.sinceDate as Date).toLocaleDateString()}</td>
-                                <td>{(employment.toDate as Date).toLocaleDateString()}</td>
+                                <td>{(employment.sinceDate as string)}</td>
+                                <td>{(employment.toDate as string)}</td>
                             </tr>)}
                         </tbody>
                     </table>
                     <button onClick={()=> 
-                        { console.log(state)
-                           dispatch({type: 'CHANGE_PERCENT', data: state.percent ? state.percent  + 20: 0});
+                        { 
+                           navigate('/peticion-familiar/beneficiary/beneficiary-info');
                         }
-                        } className={styles['btn-sunrise-primary']+" btn"}>Completar</button>
+                        } className={styles['btn-sunrise-primary']+" btn"}>Siguiente</button>
                         <EmploymentHistoryForm toggleModal={(isOpen) => toggleModal(isOpen)} isModalOpen={isModalOpen}/>
                 </div>
 }
