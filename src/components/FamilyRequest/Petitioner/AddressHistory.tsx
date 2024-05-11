@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { changeFamReqPercent } from '../../../GlobalState/FamilyRequest/familyRequestPetSlice';
 import { RootState } from '../../../GlobalState/store';
 import styles from './AddressHistory.module.css';
@@ -11,24 +11,21 @@ import AddressHistoryForm from './AddressHistoryForm';
 const AddressHistory = () => {
 
     // const {state, dispatch} = useRegFormContext();
-     const state = useSelector((state: RootState) => state.familyRequestPet);
-     const dispatch = useDispatch();
+    const state = useSelector((state: RootState) => state.familyRequestPet);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
-
-
-
     const addressHistory = state.petAddressHistory ? state.petAddressHistory : [];
-
-    console.log(addressHistory);
-
     const [isModalOpen, toggleModal] = useState(false);
+
+    const location = useLocation();
+    const isPetioner = location.pathname === '/peticion-familiar/historial-de-direcciones';
 
     useEffect(()=> {
         dispatch(changeFamReqPercent(5));
     }, [])
 
     const onNavigate = () => {
-        navigate('/peticion-familiar/marriage-info')
+        navigate('/peticion-familiar/informacion-matrimonial')
     }
 
     return  <div className={styles['address-history'] + " mb-3 mt-2" }>

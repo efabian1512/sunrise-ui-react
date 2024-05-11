@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { changeFamReqPercent } from '../../../GlobalState/FamilyRequest/familyRequestPetSlice';
 import { RootState } from '../../../GlobalState/store';
 import styles from './EmoploymentHistory.module.css';
@@ -10,6 +10,8 @@ import generalStyle from '/src/GeneralStyle.module.css';
 const EmploymentHistory = () => {
 
      const state = useSelector((state: RootState) => state.familyRequestPet);
+     const location = useLocation();
+    const isPetiotner = location.pathname === '/peticion-familiar/historial-de-empleos';
      
      const dispatch = useDispatch();
      const [isModalOpen, toggleModal] = useState(false);
@@ -44,7 +46,7 @@ const EmploymentHistory = () => {
                     </table>
                     <button onClick={()=> 
                         { 
-                           navigate('/peticion-familiar/beneficiary/beneficiary-info');
+                           navigate('/peticion-familiar/beneficiario/info');
                         }
                         } className={styles['btn-sunrise-primary']+" btn"}>Siguiente</button>
                         <EmploymentHistoryForm toggleModal={(isOpen) => toggleModal(isOpen)} isModalOpen={isModalOpen}/>

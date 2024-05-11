@@ -2,7 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect } from 'react';
 import { FieldValues, useForm, useWatch } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import z from 'zod';
 import { changeFamReqPercent } from '../../../GlobalState/FamilyRequest/familyRequestPetSlice';
 import { RootState } from '../../../GlobalState/store';
@@ -65,6 +65,12 @@ type FormData = z.infer<typeof schema>;
 
 const MarriageInfo = () => {
 
+    const location = useLocation();
+
+    console.log(location);
+
+    const isPetiotner = location.pathname === '/peticion-familiar/informacion-matrimonial';
+
      const {  register, handleSubmit, reset, formState: {errors, isValid}, control } = useForm<FormData>({resolver: zodResolver(schema)});
      const marriagesNumber = useWatch({control, name: 'marriages'});
      const maritialStatus = useWatch({control, name: 'maritialStatus'})
@@ -93,7 +99,6 @@ const MarriageInfo = () => {
      }
 
         useEffect(()=> {
-            console.log(state);
             dispatch(changeFamReqPercent(5));
         }, [])
 
@@ -101,7 +106,7 @@ const MarriageInfo = () => {
      const onSubmit = (data: FieldValues) => {
         if(isValid) {
             dispatch({type: 'SET_MARRIAGE_INFO', data});
-            navigate('/peticion-familiar/parents-info');
+            navigate('/peticion-familiar/padres-info');
         }
      }
 

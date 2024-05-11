@@ -6,6 +6,8 @@ import styles from './FamilyRequest.module.css';
 
 const FamilyRequest = () => {
 
+    
+
     return  <div className={styles['family-request']}>
                 <h2 className="mb-4">Peticion Familiar</h2>
                 <div className="mb-5"><ProgressBar/></div>

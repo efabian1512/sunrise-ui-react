@@ -21,14 +21,14 @@ const router = createBrowserRouter([
     {path: 'peticion-familiar', element: <FamilyRequest/>, children: [
         {path: '', element: <PetitionerHome/>, children: [
             {path: '', element: <PersonalInfo/> },
-            {path: 'address-history', element: <AddressHistory/>},
-            {path: 'marriage-info', element: <MarriageInfo/>},
-            {path: 'parents-info', element: <ParentsInfo/>},
-            {path: 'employment-history', element: <EmploymentHistory/>},
+            {path: 'historial-de-direcciones', element: <AddressHistory/>},
+            {path: 'informacion-matrimonial', element: <MarriageInfo/>},
+            {path: 'padres-info', element: <ParentsInfo/>},
+            {path: 'historial-de-empleos', element: <EmploymentHistory/>},
         ]
     },
-        {path: 'beneficiary', element: <BeneficiaryHome/>, children: [
-            {path: 'beneficiary-info', element: <BeneficiaryPersonalInfo/>}
+        {path: 'beneficiario', element: <BeneficiaryHome/>, children: [
+            {path: 'info', element: <PersonalInfo/>}
         ]}
     ]},
 ]);

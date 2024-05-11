@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { changeFamReqPercent } from '../../../GlobalState/FamilyRequest/familyRequestPetSlice';
 import { RootState } from '../../../GlobalState/store';
 import styles from './ParentsInfo.module.css';
@@ -14,6 +14,8 @@ const ParentsInfo = () => {
    const dispatch = useDispatch();
 
     const [isModalOpen, toggleModal] = useState(false);
+    const location = useLocation();
+    const isPetiotner = location.pathname === '/peticion-familiar/padres-info';
 
      useEffect(()=> {
             dispatch(changeFamReqPercent(5));
@@ -22,7 +24,7 @@ const ParentsInfo = () => {
     const navigate = useNavigate();
 
     const onSubmit = () => {
-        navigate('/peticion-familiar/employment-history')
+        navigate('/peticion-familiar/historial-de-empleos')
     }
     return <div>
                      <span className={styles['parents-info-title'] + " h5 d-block"}>Informacion de los Padres</span>

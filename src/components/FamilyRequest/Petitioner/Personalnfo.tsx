@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FieldValues, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { z } from 'zod';
 import { setPetCommonData } from '../../../GlobalState/FamilyRequest/familyRequestPetSlice';
 import { setCountryFirst, sortCountries } from '../../../Utilities';
@@ -9,9 +9,18 @@ import { useCountries } from '../../Hooks/useCountries';
 import Calendar from '../../ReusableComponents/Calendar';
 import styles from './PersonalInfo.module.css';
 
+
+
+const PersonalInfo = () => {
+
+     const locationR = useLocation();
+ const isPetioner = locationR.pathname === '/peticion-familiar/' || locationR.pathname === '/peticion-familiar';
+
+ console.log(isPetioner);
+
 const schema = z.object({
     socialSecurity: z.string().min(9,{message: 'Inserte los 9 caracteres del seguro social' })
-                              .max(9, {message: 'El seguro social solo cuenta con 9 caracteres'}),
+                              .max(9, {message: 'El seguro social solo cuenta con 9 caracteres'}).optional(),
     fullName: z.string().min(1, {message: 'El nombre completo es requerido.'}),
     otherName: z.string(),
     cityOfBirth: z.string().min(1, {message: 'Este campo es requerido.'}),
@@ -29,17 +38,23 @@ const schema = z.object({
     height: z.number({invalid_type_error: 'Este campo es requerido'}).min(0.1, {message: 'El valor debe ser mayor a 0.'}),
     weight: z.number({invalid_type_error: 'Este campo es requerido'}).min(0.1, {message: 'El valor debe ser mayor a 0.'}),
     eyesColor: z.string().min(1, {message: 'Este campo es requerido.'})
-});
+}).superRefine((val, ctx) => {
+    if(isPetioner && !val.socialSecurity) 
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ['socialSEcurity'],
+          message: 'El seguro social es requerido.'
+        }); 
+  } 
+);
 
 type FormData = z.infer<typeof schema>;
 
-const PersonalInfo = () => {
-
         const { data } = useCountries();
 
+       
+
         const countries = setCountryFirst(data?.sort(sortCountries)!, 'DOM');
-    
-        // const {state, dispatch} = useRegFormContext();
 
         const dispatch = useDispatch();
 
@@ -50,8 +65,7 @@ const PersonalInfo = () => {
             const info = {...data, dateOfBirth: data.dateOfBirth.toLocaleDateString()}
             if (isValid) {
                 dispatch(setPetCommonData(info));
-                // dispatch({type: 'SET_COMMON_DATA', data: info});
-                navigate('/peticion-familiar/address-history');
+                navigate('/peticion-familiar/historial-de-direcciones');
             }
         }
 
@@ -68,7 +82,7 @@ const PersonalInfo = () => {
                              <div className={styles['personal-info']}>
                                <div>
                                    <div className="mb-3 fw-bold">
-                                        <label htmlFor="socialSecurity" className="form-label">Seguro Social</label>
+                                        <label htmlFor="socialSecurity" className="form-label">{isPetioner ? 'Seguro Social' : 'Seguro Social (si aplica)'}</label>
                                         <input type="text" className="form-control" id="socialSecurity" {...register('socialSecurity')}/>
                                          { errors.socialSecurity && <div className="alert alert-danger mt-2">
                                                     <div> {errors.socialSecurity?.message}</div></div> }
@@ -98,7 +112,7 @@ const PersonalInfo = () => {
                                         <label htmlFor="countryOfBirth" className="form-label">Pais de Nacimiento</label>
                                         <select className={styles['country-select'] + " form-select"} {...register('countryOfBirth')} id="countryOfBirth" >
                                             <option value=""></option>
-                                            {countries?.map(country => <option key={country.fifa} value={country.fifa}>{country.name.common}</option>)}
+                                            {countries?.map((country, index) => <option key={country.fifa + index.toString} value={country.fifa}>{country.name.common}</option>)}
                                         </select>
                                          { errors.countryOfBirth && <div className="alert alert-danger mt-2">
                                                     <div> {errors.countryOfBirth?.message}</div></div> }
